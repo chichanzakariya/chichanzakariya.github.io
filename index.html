@@ -1,108 +1,143 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>لعبة كرة قدم متقدمة</title>
+    <title>موقع الصباغ المحترف - [اسم الوالد]</title>
     <style>
         body {
-            text-align: center;
             font-family: Arial, sans-serif;
-            background-color: #e6f7ff;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
             color: #333;
-            margin-top: 50px;
         }
-        #gameArea {
-            background-image: url('https://i.imgur.com/gK9dG9f.png'); /* صورة خلفية لملعب كرة قدم */
-            background-size: cover;
-            background-position: center;
-            border: 5px solid #005f00;
-            max-width: 800px;
-            height: 450px;
-            margin: 0 auto;
-            position: relative;
-            cursor: none; /* لإخفاء مؤشر الماوس العادي */
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
         }
-        h1 {
-            color: white;
-            text-shadow: 2px 2px 4px #000;
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #0779e4 3px solid;
+            text-align: center;
         }
-        #ball {
-            width: 50px;
-            height: 50px;
-            position: absolute;
-            background-image: url('https://www.flaticon.com/svg/static/icons/svg/1004/1004510.svg'); /* صورة الكرة */
-            background-size: contain;
-            cursor: none;
-            transition: transform 0.1s ease-out; /* إضافة حركة سلسة */
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
         }
-        #goal {
-            width: 100px;
-            height: 50px;
-            position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            background-color: transparent;
-            z-index: 1; /* لجعل الهدف فوق الكرة */
+        header p {
+            font-size: 1.2em;
         }
-        #score {
-            font-size: 2em;
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+            text-align: right;
+            direction: rtl;
+        }
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-left: 20px;
+        }
+        .services-section, .portfolio-section, .contact-section {
+            padding: 20px;
+            margin-top: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            direction: rtl;
+            text-align: right;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .portfolio-item p {
+            margin: 10px 0 0 0;
             font-weight: bold;
-            color: white;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            text-shadow: 2px 2px 4px #000;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            background: #333;
+            color: #fff;
         }
     </style>
 </head>
 <body>
 
-    <h1>حرك الماوس لتحريك الكرة وحاول تسجيل هدف!</h1>
-    <div id="gameArea">
-        <div id="ball"></div>
-        <div id="goal"></div>
+    <header>
+        <div class="container">
+            <h1>[اسم الوالد] - صباغ محترف</h1>
+            <p>أكثر من 20 عامًا من الخبرة في الصباغة والديكورات الداخلية.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="profile-section">
+            <div>
+                <h2>مرحباً بكم</h2>
+                <p>
+                    [اكتب هنا وصفاً قصيراً عن والدك، مثلاً: "أنا أحمد، صباغ محترف بخبرة واسعة. أقدم لكم خدمات صباغة عالية الجودة لمنزلكم، مكتبي، أو أي مشروع آخر. أعمل بدقة واحترافية لضمان رضاكم التام."]
+                </p>
+            </div>
+            <img class="profile-image" src="profile.jpg" alt="صورة الصباغ">
+        </div>
+
+        <div class="services-section">
+            <h2>خدماتنا</h2>
+            <ul>
+                <li>[اكتب اسم خدمة 1 هنا، مثلاً: صباغة المنازل الداخلية والخارجية]</li>
+                <li>[اكتب اسم خدمة 2 هنا، مثلاً: ديكورات الجدران الحديثة]</li>
+                <li>[اكتب اسم خدمة 3 هنا، مثلاً: دهان الأبواب والنوافذ]</li>
+                <li>[اكتب اسم خدمة 4 هنا، مثلاً: ترميم وصيانة الدهانات القديمة]</li>
+            </ul>
+        </div>
+
+        <div class="portfolio-section">
+            <h2>معرض أعمالنا</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="project1.jpg" alt="صورة عمل 1">
+                    <p>صباغة شقة كاملة بألوان عصرية</p>
+                </div>
+                <div class="portfolio-item">
+                    <img src="project2.jpg" alt="صورة عمل 2">
+                    <p>ديكور خاص لغرفة نوم</p>
+                </div>
+                <div class="portfolio-item">
+                    <img src="project3.jpg" alt="صورة عمل 3">
+                    <p>دهان خارجي لمبنى</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>تواصل معنا</h2>
+            <p>للحصول على استشارة مجانية أو لطلب خدمة، يمكنكم التواصل معنا عبر:</p>
+            <p>
+                واتساب: [اكتب رقم والدك هنا]
+            </p>
+        </div>
     </div>
-    <p id="score">الأهداف: 0</p>
 
-    <script>
-        const gameArea = document.getElementById("gameArea");
-        const ball = document.getElementById("ball");
-        const goal = document.getElementById("goal");
-        const scoreElement = document.getElementById("score");
-
-        let score = 0;
-
-        gameArea.addEventListener("mousemove", (e) => {
-            // حساب موقع الماوس بالنسبة لمنطقة اللعبة
-            const mouseX = e.clientX - gameArea.getBoundingClientRect().left;
-            const mouseY = e.clientY - gameArea.getBoundingClientRect().top;
-            
-            // تحريك الكرة لتتبع مؤشر الماوس
-            ball.style.left = mouseX - 25 + 'px'; // -25px لتكون الكرة في المنتصف
-            ball.style.top = mouseY - 25 + 'px';
-            
-            // الكشف عن إذا كانت الكرة دخلت الهدف
-            const ballRect = ball.getBoundingClientRect();
-            const goalRect = goal.getBoundingClientRect();
-
-            if (
-                ballRect.left > goalRect.left &&
-                ballRect.right < goalRect.right &&
-                ballRect.top > goalRect.top &&
-                ballRect.bottom < goalRect.bottom
-            ) {
-                // تسجيل هدف
-                score++;
-                scoreElement.textContent = "الأهداف: " + score;
-
-                // إعادة الكرة إلى مكان عشوائي على اليسار
-                ball.style.left = Math.random() * (gameArea.offsetWidth / 2) + 'px';
-                ball.style.top = Math.random() * gameArea.offsetHeight + 'px';
-            }
-        });
-    </script>
+    <footer>
+        <p>&copy; 2025 [اسم الوالد]. جميع الحقوق محفوظة.</p>
+    </footer>
 
 </body>
 </html>
-
-
