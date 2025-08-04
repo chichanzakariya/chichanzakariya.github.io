@@ -3,206 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[اسم الوالد] - صباغ وديكورات</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>[اسم الوالد] - خدمات صباغة احترافية</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
         :root {
-            --primary-color: #007bff;
-            --secondary-color: #343a40;
-            --background-color: #f8f9fa;
-            --text-color: #495057;
-            --white-color: #fff;
-            --accent-color: #ffc107;
-            --soft-blue: #e9f5ff;
+            --primary-color: #3f51b5; /* لون أزرق جذاب */
+            --secondary-color: #212121; /* لون غامق للنصوص */
+            --background-color: #f5f5f5; /* خلفية رمادية فاتحة */
+            --card-background: #fff;
+            --text-color: #424242;
+            --accent-color: #ff9800; /* لون برتقالي للتأكيد */
         }
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        html {
-            scroll-behavior: smooth;
-        }
         body {
-            font-family: 'Cairo', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
             direction: rtl;
             text-align: right;
+            padding: 20px;
         }
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 960px;
             margin: auto;
-            overflow: hidden;
         }
-        /* Navigation Bar */
-        nav {
-            background: var(--white-color);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav .logo-container {
-            display: flex;
-            align-items: center;
-        }
-        nav .logo-container img {
-            height: 40px;
-            margin-left: 10px;
-        }
-        nav .logo-container span {
-            font-weight: 700;
-            font-size: 1.5em;
-            color: var(--secondary-color);
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            align-items: center;
-        }
-        nav ul li a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 15px;
-            transition: color 0.3s ease, background-color 0.3s ease;
-            border-radius: 5px;
-        }
-        nav ul li a:hover {
-            color: var(--white-color);
-            background-color: var(--primary-color);
-        }
-        /* Hero Section */
-        .hero {
-            position: relative;
-            background-image: url('hero-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        header {
             text-align: center;
-            color: var(--white-color);
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #673ab7 100%);
+            color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.6);
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
         }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            padding: 20px;
-        }
-        .hero h1 {
-            font-size: 3.8em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-        }
-        .hero p {
-            font-size: 1.4em;
-            line-height: 1.8;
-        }
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--secondary-color);
-            padding: 12px 30px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 25px;
-            border-radius: 50px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #ffb300;
-            transform: scale(1.05);
-        }
-        /* General Section Styling */
-        section {
-            padding: 80px 0;
-        }
-        section:nth-of-type(odd) {
-            background-color: var(--soft-blue);
+        header p {
+            font-size: 1.2em;
+            font-weight: 300;
         }
         .section-title {
-            font-size: 2.8em;
-            color: var(--secondary-color);
             text-align: center;
-            margin-bottom: 50px;
+            font-size: 2.2em;
+            color: var(--secondary-color);
+            margin-top: 50px;
+            margin-bottom: 20px;
             position: relative;
             display: inline-block;
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 10px;
+            width: 100%;
         }
         .section-title::after {
             content: '';
-            width: 50px;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
             height: 3px;
             background-color: var(--accent-color);
-            position: absolute;
-            bottom: -3px;
-            right: 0;
+            border-radius: 2px;
         }
-        /* About Section */
-        .about-content {
+        .content-card {
+            background-color: var(--card-background);
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .profile-info {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 25px;
             flex-wrap: wrap-reverse;
         }
-        .about-content img {
-            width: 350px;
-            height: 350px;
+        .profile-info img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
             object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        .about-text {
+        .profile-text {
             flex: 1;
         }
-        /* Services Section */
-        .services-grid {
+        .services-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+            gap: 15px;
+        }
+        .services-list li {
+            background-color: var(--background-color);
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: var(--primary-color);
+            border: 1px solid #ddd;
+        }
+        .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 20px;
         }
-        .service-card {
-            background-color: var(--white-color);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
-        .service-card:hover {
-            transform: translateY(-10px);
+        .portfolio-item:hover {
+            transform: translateY(-5px);
         }
-        .service-card .icon {
-            font-size: 3em;
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .portfolio-caption {
+            padding: 15px;
+            background-color: var(--card-background);
+            text-align: center;
+            font-weight: bold;
+        }
+        .contact-info {
+            text-align: center;
+            font-size: 1.1em;
+        }
+        .contact-info a {
             color: var(--primary-color);
-            margin-bottom: 15px;
+            text-decoration: none;
+            font-weight: bold;
         }
-        .service-card h3 {
-            color: var(--secondary-color);
-            margin-bottom: 10px;
+        .contact-info a:hover {
+            text-decoration: underline;
         }
-        /*
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: var(--secondary-color);
+            color: var(--background-color);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>[اسم الوالد] - صباغ محترف</h1>
+            <p>
+                [وصف قصير وجذاب، مثلاً: "أكثر من 20 عاماً من الخبرة في تحويل المنازل إلى لوحات فنية. نعمل بدقة واحترافية لا مثيل لها."]
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section id="about">
+            <h2 class="section-title">من نحن</h2>
+            <div class="content-card">
+                <div class="profile-info">
+                    <img src="profile.jpg" alt="صورة الصباغ">
+                    <div class="profile-text">
+                        <p>[اكتب هنا وصفاً مفصلاً عن والدك، مثلاً: "أنا [اسم الوالد]، شغفي هو إضفاء الحياة على المساحات من خلال الألوان والدهانات. مع خبرة تمتد لأكثر من عقدين، قمت بتنفيذ مئات المشاريع بنجاح. ألتزم دائماً بأعلى معايير الجودة والدقة في كل التفاصيل."]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2 class="section-title">خدماتنا</h2>
+            <div class="content-card">
+                <ul class="services-list">
+                    <li>[اكتب اسم خدمة 1]</li>
+                    <li>[اكتب اسم خدمة 2]</li>
+                    <li>[اكتب اسم خدمة 3]</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <h2 class="section-title">معرض أعمالنا</h2>
+            <div class="content-card">
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="project1.jpg" alt="صورة عمل 1">
+                        <div class="portfolio-caption">[عنوان العمل 1]</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="project2.jpg" alt="صورة عمل 2">
+                        <div class="portfolio-caption">[عنوان العمل 2]</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="project3.jpg" alt="صورة عمل 3">
+                        <div class="portfolio-caption">[عنوان العمل 3]</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">تواصل معنا</h2>
+            <div class="content-card">
+                <div class="contact-info">
+                    <p>لطلب خدمة أو للحصول على استشارة مجانية، تواصلوا معنا عبر:</p>
+                    <p>واتساب: <a href="https://wa.me/[رقم الواتساب]" target="_blank">[رقم الوالد هنا]</a></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 [اسم الوالد]. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
 
 
