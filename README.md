@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محسن شيشان - صباغ محترف</title>
+    <style>
+        :root {
+            --primary-color: #3f51b5; /* لون أزرق جذاب */
+            --secondary-color: #212121; /* لون غامق للنصوص */
+            --background-color: #f5f5f5; /* خلفية رمادية فاتحة */
+            --card-background: #fff;
+            --text-color: #424242;
+            --accent-color: #ff9800; /* لون برتقالي للتأكيد */
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            direction: rtl;
+            text-align: right;
+            padding: 20px;
+        }
+        .container {
+            width: 90%;
+            max-width: 960px;
+            margin: auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #673ab7 100%);
+            color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2em;
+            color: var(--secondary-color);
+            margin-top: 50px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+        .content-card {
+            background-color: var(--card-background);
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .profile-info {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap-reverse;
+        }
+        .profile-info img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .profile-text {
+            flex: 1;
+        }
+        .services-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+            gap: 15px;
+        }
+        .services-list li {
+            background-color: var(--background-color);
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: var(--primary-color);
+            border: 1px solid #ddd;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .portfolio-caption {
+            padding: 15px;
+            background-color: var(--card-background);
+            text-align: center;
+            font-weight: bold;
+        }
+        .contact-info {
+            text-align: center;
+            font-size: 1.1em;
+        }
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: var(--secondary-color);
+            color: var(--background-color);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>محسن شيشان - صباغ محترف</h1>
+            <p>
+                أكثر من 20 عاماً من الخبرة في تحويل المنازل إلى لوحات فنية. نعمل بدقة واحترافية لا مثيل لها.
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section id="about">
+            <h2 class="section-title">من نحن</h2>
+            <div class="content-card">
+                <div class="profile-info">
+                    <img src="profile.jpg" alt="صورة الصباغ">
+                    <div class="profile-text">
+                        <p>أنا محسن، شغفي هو إضفاء الحياة على المساحات من خلال الألوان والدهانات. مع خبرة تمتد لأكثر من عقدين، قمت بتنفيذ مئات المشاريع بنجاح. ألتزم دائماً بأعلى معايير الجودة والدقة في كل التفاصيل.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2 class="section-title">خدماتنا</h2>
+            <div class="content-card">
+                <ul class="services-list">
+                    <li>صباغة المنازل الداخلية</li>
+                    <li>ديكورات الجدران الحديثة</li>
+                    <li>دهان الأبواب والنوافذ</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <h2 class="section-title">معرض أعمالنا</h2>
+            <div class="content-card">
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="project1.jpg" alt="صورة عمل 1">
+                        <div class="portfolio-caption">صباغة شقة كاملة بألوان عصرية</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="project2.jpg" alt="صورة عمل 2">
+                        <div class="portfolio-caption">ديكور خاص لغرفة نوم</div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="project3.jpg" alt="صورة عمل 3">
+                        <div class="portfolio-caption">تجديد دهان غرفة معيشة</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">تواصل معنا</h2>
+            <div class="content-card">
+                <div class="contact-info">
+                    <p>لطلب خدمة أو للحصول على استشارة مجانية، تواصلوا معنا عبر:</p>
+                    <p>واتساب: <a href="https://wa.me/0661667489" target="_blank">0661667489</a></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 محسن شيشان. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
