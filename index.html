@@ -1,78 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>لعبة تخمين الرقم</title>
+    <title>لعبة كرة قدم بسيطة</title>
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #e6f7ff;
             color: #333;
             margin-top: 50px;
         }
         #gameArea {
-            background-color: white;
+            background-color: #4CAF50;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            max-width: 500px;
             margin: 0 auto;
+            position: relative;
+            height: 300px;
+            overflow: hidden;
         }
-        input[type="number"] {
-            width: 80%;
-            padding: 10px;
-            font-size: 18px;
-            margin-top: 10px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-        }
-        button {
-            padding: 12px 25px;
-            font-size: 18px;
-            margin-top: 20px;
-            cursor: pointer;
-            border: none;
-            background-color: #007BFF;
+        h1 {
             color: white;
-            border-radius: 8px;
         }
-        #message {
-            margin-top: 20px;
-            font-size: 20px;
+        #score {
+            font-size: 2em;
             font-weight: bold;
+            color: white;
+            margin-top: 10px;
+        }
+        #goal {
+            width: 150px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        #ball {
+            width: 50px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            transition: all 0.5s ease-out;
         }
     </style>
 </head>
 <body>
 
     <div id="gameArea">
-        <h1>لعبة تخمين الرقم</h1>
-        <p>لقد اخترت رقمًا سريًا بين 1 و 10. هل يمكنك تخمينه؟</p>
-        <input type="number" id="guessInput" placeholder="أدخل تخمينك هنا...">
-        <button onclick="checkGuess()">تأكيد التخمين</button>
-        <p id="message"></p>
+        <h1>لعبة كرة قدم بسيطة</h1>
+        <img id="goal" src="https://www.flaticon.com/svg/static/icons/svg/1004/1004509.svg" alt="Goal">
+        <img id="ball" src="https://www.flaticon.com/svg/static/icons/svg/1004/1004510.svg" alt="Football">
+        <p id="score">الأهداف: 0</p>
     </div>
 
     <script>
-        const randomNumber = Math.floor(Math.random() * 10) + 1;
-        const guessInput = document.getElementById("guessInput");
-        const message = document.getElementById("message");
-        
-        function checkGuess() {
-            const userGuess = Number(guessInput.value);
+        const ball = document.getElementById("ball");
+        const scoreElement = document.getElementById("score");
+        let score = 0;
 
-            if (userGuess === randomNumber) {
-                message.textContent = "تهانينا! لقد خمنت الرقم الصحيح!";
-                message.style.color = "green";
-                guessInput.disabled = true;
-            } else if (userGuess > randomNumber) {
-                message.textContent = "الرقم السري أصغر!";
-                message.style.color = "red";
-            } else {
-                message.textContent = "الرقم السري أكبر!";
-                message.style.color = "red";
-            }
-        }
+        ball.addEventListener("click", () => {
+            // قم بتحريك الكرة إلى الهدف
+            ball.style.transform = "translate(-50%, -200px) rotate(360deg)";
+            
+            // انتظر قليلاً ثم أعد الكرة إلى مكانها
+            setTimeout(() => {
+                ball.style.transform = "translate(-50%, 0) rotate(0deg)";
+            }, 500);
+
+            // زيادة العداد وتحديثه
+            score++;
+            scoreElement.textContent = "الأهداف: " + score;
+        });
     </script>
 
 </body>
