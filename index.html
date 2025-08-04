@@ -1,41 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>لعبة بسيطة جداً</title>
+    <title>لعبة تخمين الرقم</title>
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
             margin-top: 50px;
         }
-        button {
-            padding: 20px 40px;
-            font-size: 24px;
-            cursor: pointer;
-            border-radius: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
+        #gameArea {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin: 0 auto;
         }
-        h1 {
-            color: #333;
+        input[type="number"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 18px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 8px;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <h1>اضغط على الزر لزيادة العداد!</h1>
-    <button id="counterButton">العدد: 0</button>
+    <div id="gameArea">
+        <h1>لعبة تخمين الرقم</h1>
+        <p>لقد اخترت رقمًا سريًا بين 1 و 10. هل يمكنك تخمينه؟</p>
+        <input type="number" id="guessInput" placeholder="أدخل تخمينك هنا...">
+        <button onclick="checkGuess()">تأكيد التخمين</button>
+        <p id="message"></p>
+    </div>
 
     <script>
-        let count = 0;
-        const button = document.getElementById("counterButton");
+        const randomNumber = Math.floor(Math.random() * 10) + 1;
+        const guessInput = document.getElementById("guessInput");
+        const message = document.getElementById("message");
+        
+        function checkGuess() {
+            const userGuess = Number(guessInput.value);
 
-        button.addEventListener("click", () => {
-            count++;
-            button.textContent = "العدد: " + count;
-        });
+            if (userGuess === randomNumber) {
+                message.textContent = "تهانينا! لقد خمنت الرقم الصحيح!";
+                message.style.color = "green";
+                guessInput.disabled = true;
+            } else if (userGuess > randomNumber) {
+                message.textContent = "الرقم السري أصغر!";
+                message.style.color = "red";
+            } else {
+                message.textContent = "الرقم السري أكبر!";
+                message.style.color = "red";
+            }
+        }
     </script>
 
 </body>
 </html>
+
