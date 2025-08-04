@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>لعبة كرة قدم بسيطة</title>
+    <title>لعبة كرة قدم متقدمة</title>
     <style>
         body {
             text-align: center;
@@ -11,71 +11,98 @@
             margin-top: 50px;
         }
         #gameArea {
-            background-color: #4CAF50;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            max-width: 500px;
+            background-image: url('https://i.imgur.com/gK9dG9f.png'); /* صورة خلفية لملعب كرة قدم */
+            background-size: cover;
+            background-position: center;
+            border: 5px solid #005f00;
+            max-width: 800px;
+            height: 450px;
             margin: 0 auto;
             position: relative;
-            height: 300px;
-            overflow: hidden;
+            cursor: none; /* لإخفاء مؤشر الماوس العادي */
         }
         h1 {
             color: white;
+            text-shadow: 2px 2px 4px #000;
+        }
+        #ball {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-image: url('https://www.flaticon.com/svg/static/icons/svg/1004/1004510.svg'); /* صورة الكرة */
+            background-size: contain;
+            cursor: none;
+            transition: transform 0.1s ease-out; /* إضافة حركة سلسة */
+        }
+        #goal {
+            width: 100px;
+            height: 50px;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background-color: transparent;
+            z-index: 1; /* لجعل الهدف فوق الكرة */
         }
         #score {
             font-size: 2em;
             font-weight: bold;
             color: white;
-            margin-top: 10px;
-        }
-        #goal {
-            width: 150px;
             position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        #ball {
-            width: 50px;
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            cursor: pointer;
-            transition: all 0.5s ease-out;
+            top: 10px;
+            left: 10px;
+            text-shadow: 2px 2px 4px #000;
         }
     </style>
 </head>
 <body>
 
+    <h1>حرك الماوس لتحريك الكرة وحاول تسجيل هدف!</h1>
     <div id="gameArea">
-        <h1>لعبة كرة قدم بسيطة</h1>
-        <img id="goal" src="https://www.flaticon.com/svg/static/icons/svg/1004/1004509.svg" alt="Goal">
-        <img id="ball" src="https://www.flaticon.com/svg/static/icons/svg/1004/1004510.svg" alt="Football">
-        <p id="score">الأهداف: 0</p>
+        <div id="ball"></div>
+        <div id="goal"></div>
     </div>
+    <p id="score">الأهداف: 0</p>
 
     <script>
+        const gameArea = document.getElementById("gameArea");
         const ball = document.getElementById("ball");
+        const goal = document.getElementById("goal");
         const scoreElement = document.getElementById("score");
+
         let score = 0;
 
-        ball.addEventListener("click", () => {
-            // قم بتحريك الكرة إلى الهدف
-            ball.style.transform = "translate(-50%, -200px) rotate(360deg)";
+        gameArea.addEventListener("mousemove", (e) => {
+            // حساب موقع الماوس بالنسبة لمنطقة اللعبة
+            const mouseX = e.clientX - gameArea.getBoundingClientRect().left;
+            const mouseY = e.clientY - gameArea.getBoundingClientRect().top;
             
-            // انتظر قليلاً ثم أعد الكرة إلى مكانها
-            setTimeout(() => {
-                ball.style.transform = "translate(-50%, 0) rotate(0deg)";
-            }, 500);
+            // تحريك الكرة لتتبع مؤشر الماوس
+            ball.style.left = mouseX - 25 + 'px'; // -25px لتكون الكرة في المنتصف
+            ball.style.top = mouseY - 25 + 'px';
+            
+            // الكشف عن إذا كانت الكرة دخلت الهدف
+            const ballRect = ball.getBoundingClientRect();
+            const goalRect = goal.getBoundingClientRect();
 
-            // زيادة العداد وتحديثه
-            score++;
-            scoreElement.textContent = "الأهداف: " + score;
+            if (
+                ballRect.left > goalRect.left &&
+                ballRect.right < goalRect.right &&
+                ballRect.top > goalRect.top &&
+                ballRect.bottom < goalRect.bottom
+            ) {
+                // تسجيل هدف
+                score++;
+                scoreElement.textContent = "الأهداف: " + score;
+
+                // إعادة الكرة إلى مكان عشوائي على اليسار
+                ball.style.left = Math.random() * (gameArea.offsetWidth / 2) + 'px';
+                ball.style.top = Math.random() * gameArea.offsetHeight + 'px';
+            }
         });
     </script>
 
 </body>
 </html>
+
 
