@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لعبة الدودة</title>
+    <title>أول رسوم متحركة</title>
     <style>
         body {
             display: flex;
@@ -11,242 +11,74 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #333;
-            font-family: Arial, sans-serif;
-            flex-direction: column;
-            color: #fff;
-        }
-        #game-container {
-            border: 5px solid #fff;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
             background-color: #2c3e50;
-            position: relative;
         }
         canvas {
-            display: block;
-        }
-        #overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            text-align: center;
-            font-size: 2em;
-            display: none;
-        }
-        #overlay h1 {
-            margin-bottom: 20px;
-            font-size: 1.5em;
-        }
-        #overlay button {
-            padding: 10px 20px;
-            font-size: 0.8em;
-            cursor: pointer;
-            border: none;
-            background-color: #3f51b5;
-            color: #fff;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        #overlay button:hover {
-            background-color: #536dfe;
-        }
-        #score-display {
-            margin-top: 20px;
-            font-size: 1.5em;
-            color: #e0e0e0;
+            background-color: #34495e;
+            border: 5px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
 <body>
-
-    <div id="game-container">
-        <canvas id="gameCanvas"></canvas>
-        <div id="overlay">
-            <h1>انتهت اللعبة!</h1>
-            <p>نقاطك: <span id="finalScore">0</span></p>
-            <button id="restartButton">إعادة اللعب</button>
-        </div>
-    </div>
-    <div id="score-display">النقاط: <span id="currentScore">0</span></div>
+    <canvas id="myCanvas"></canvas>
 
     <script>
-        const canvas = document.getElementById('gameCanvas');
+        const canvas = document.getElementById('myCanvas');
         const ctx = canvas.getContext('2d');
-        const scoreDisplay = document.getElementById('currentScore');
-        const finalScoreDisplay = document.getElementById('finalScore');
-        const overlay = document.getElementById('overlay');
-        const restartButton = document.getElementById('restartButton');
 
-        const gridSize = 20;
-        let tileSize = 0;
-        let snake = [];
-        let food = {};
-        let score = 0;
-        let direction = 'right';
-        let changingDirection = false;
-        let gameSpeed = 100; // Milliseconds per frame
-        let gameInterval;
-        let isGameOver = false;
+        // تحديد حجم اللوحة
+        canvas.width = 600;
+        canvas.height = 400;
 
-        function initializeGame() {
-            isGameOver = false;
-            overlay.style.display = 'none';
-            score = 0;
-            scoreDisplay.textContent = score;
-            direction = 'right';
-            changingDirection = false;
-            snake = [
-                { x: 10, y: 10 },
-                { x: 9, y: 10 },
-                { x: 8, y: 10 }
-            ];
-            createFood();
-            gameInterval = setInterval(main, gameSpeed);
+        // متغيرات الكرة
+        let x = canvas.width / 2; // الموضع الأفقي
+        let y = canvas.height / 2; // الموضع العمودي
+        let dx = 2; // السرعة الأفقية
+        let dy = -2; // السرعة العمودية
+        const ballRadius = 20;
+
+        // دالة لرسم الكرة
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+            ctx.fillStyle = "#e74c3c";
+            ctx.fill();
+            ctx.closePath();
         }
 
-        function createFood() {
-            food = {
-                x: Math.floor(Math.random() * (canvas.width / tileSize)),
-                y: Math.floor(Math.random() * (canvas.height / tileSize))
-            };
-        }
-
-        function drawSnakePart(snakePart) {
-            ctx.fillStyle = '#2ecc71';
-            ctx.strokeStyle = '#27ae60';
-            ctx.fillRect(snakePart.x * tileSize, snakePart.y * tileSize, tileSize, tileSize);
-            ctx.strokeRect(snakePart.x * tileSize, snakePart.y * tileSize, tileSize, tileSize);
-        }
-
-        function drawFood() {
-            ctx.fillStyle = '#e74c3c';
-            ctx.strokeStyle = '#c0392b';
-            ctx.fillRect(food.x * tileSize, food.y * tileSize, tileSize, tileSize);
-            ctx.strokeRect(food.x * tileSize, food.y * tileSize, tileSize, tileSize);
-        }
-
-        function clearCanvas() {
-            ctx.fillStyle = '#2c3e50';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
-
-        function moveSnake() {
-            const head = { x: snake[0].x, y: snake[0].y };
-            switch (direction) {
-                case 'up':
-                    head.y--;
-                    break;
-                case 'down':
-                    head.y++;
-                    break;
-                case 'left':
-                    head.x--;
-                    break;
-                case 'right':
-                    head.x++;
-                    break;
-            }
-            snake.unshift(head);
-
-            if (head.x === food.x && head.y === food.y) {
-                score++;
-                scoreDisplay.textContent = score;
-                createFood();
-            } else {
-                snake.pop();
-            }
-        }
-
-        function checkCollision() {
-            const head = snake[0];
-
-            // Check walls
-            const hitWall = head.x < 0 || head.x >= (canvas.width / tileSize) || head.y < 0 || head.y >= (canvas.height / tileSize);
-            if (hitWall) return true;
-
-            // Check self-collision
-            for (let i = 4; i < snake.length; i++) {
-                if (snake[i].x === head.x && snake[i].y === head.y) return true;
-            }
-
-            return false;
-        }
-
+        // دالة التحديث والتحريك
         function update() {
-            if (isGameOver) return;
-            clearCanvas();
-            moveSnake();
-            if (checkCollision()) {
-                gameOver();
-                return;
+            // مسح الشاشة بالكامل في كل إطار
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            drawBall();
+
+            // تحريك الكرة
+            x += dx;
+            y += dy;
+
+            // كشف الاصطدام بالجدران الأفقية
+            if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+                dx = -dx;
             }
-            snake.forEach(drawSnakePart);
-            drawFood();
-            changingDirection = false;
-        }
-
-        function gameOver() {
-            isGameOver = true;
-            clearInterval(gameInterval);
-            finalScoreDisplay.textContent = score;
-            overlay.style.display = 'flex';
-        }
-
-        function changeDirection(event) {
-            if (changingDirection) return;
-            changingDirection = true;
-            const key = event.key;
-            const goingUp = direction === 'up';
-            const goingDown = direction === 'down';
-            const goingLeft = direction === 'left';
-            const goingRight = direction === 'right';
-
-            if (key === 'ArrowUp' && !goingDown) direction = 'up';
-            if (key === 'ArrowDown' && !goingUp) direction = 'down';
-            if (key === 'ArrowLeft' && !goingRight) direction = 'left';
-            if (key === 'ArrowRight' && !goingLeft) direction = 'right';
-        }
-        
-        function main() {
-            if (!isGameOver) {
-                update();
+            // كشف الاصطدام بالجدران العمودية
+            if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+                dy = -dy;
             }
         }
 
-        window.addEventListener('keydown', changeDirection);
-        restartButton.addEventListener('click', () => {
-            initializeGame();
-        });
-
-        // Handle window resize
-        function resizeCanvas() {
-            const container = document.getElementById('game-container');
-            const size = Math.min(window.innerWidth, window.innerHeight) * 0.8;
-            canvas.width = size - (size % gridSize);
-            canvas.height = size - (size % gridSize);
-            tileSize = canvas.width / gridSize;
-            clearCanvas();
-            if (!isGameOver) {
-                snake.forEach(drawSnakePart);
-                drawFood();
-            }
+        // دالة الحلقة الرئيسية للرسوم المتحركة
+        function animate() {
+            update();
+            requestAnimationFrame(animate);
         }
 
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-        initializeGame();
+        // بدء الرسوم المتحركة
+        animate();
     </script>
 </body>
 </html>
-
 
 
 
