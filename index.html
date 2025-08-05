@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أول رسوم متحركة</title>
+    <title>شخصان يتحركان</title>
     <style>
         body {
             display: flex;
@@ -28,44 +28,64 @@
         const ctx = canvas.getContext('2d');
 
         // تحديد حجم اللوحة
-        canvas.width = 600;
-        canvas.height = 400;
+        canvas.width = 800;
+        canvas.height = 500;
 
-        // متغيرات الكرة
-        let x = canvas.width / 2; // الموضع الأفقي
-        let y = canvas.height / 2; // الموضع العمودي
-        let dx = 2; // السرعة الأفقية
-        let dy = -2; // السرعة العمودية
-        const ballRadius = 20;
+        // تعريف الكائن الأول (الشخص الأول)
+        const person1 = {
+            x: 50,  // الموضع الأفقي
+            y: 50,  // الموضع العمودي
+            width: 40, // عرض الشخص
+            height: 80, // طول الشخص
+            dx: 3,  // السرعة الأفقية
+            dy: 3,  // السرعة العمودية
+            color: '#e74c3c' // لون الشخص
+        };
 
-        // دالة لرسم الكرة
-        function drawBall() {
-            ctx.beginPath();
-            ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-            ctx.fillStyle = "#e74c3c";
-            ctx.fill();
-            ctx.closePath();
+        // تعريف الكائن الثاني (الشخص الثاني)
+        const person2 = {
+            x: 700,
+            y: 400,
+            width: 40,
+            height: 80,
+            dx: -4,
+            dy: -2,
+            color: '#3498db'
+        };
+
+        // دالة لرسم شخص
+        function drawPerson(person) {
+            ctx.fillStyle = person.color;
+            ctx.fillRect(person.x, person.y, person.width, person.height);
         }
 
-        // دالة التحديث والتحريك
+        // دالة تحريك الكائن وتحديث موضعه
+        function movePerson(person) {
+            person.x += person.dx;
+            person.y += person.dy;
+
+            // كشف الاصطدام بالجدران الأفقية
+            if (person.x + person.width > canvas.width || person.x < 0) {
+                person.dx = -person.dx;
+            }
+            // كشف الاصطدام بالجدران العمودية
+            if (person.y + person.height > canvas.height || person.y < 0) {
+                person.dy = -person.dy;
+            }
+        }
+
+        // دالة التحديث الرئيسية
         function update() {
             // مسح الشاشة بالكامل في كل إطار
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            drawBall();
+            // رسم الشخصين
+            drawPerson(person1);
+            drawPerson(person2);
 
-            // تحريك الكرة
-            x += dx;
-            y += dy;
-
-            // كشف الاصطدام بالجدران الأفقية
-            if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
-                dx = -dx;
-            }
-            // كشف الاصطدام بالجدران العمودية
-            if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
-                dy = -dy;
-            }
+            // تحريك الشخصين
+            movePerson(person1);
+            movePerson(person2);
         }
 
         // دالة الحلقة الرئيسية للرسوم المتحركة
@@ -79,6 +99,7 @@
     </script>
 </body>
 </html>
+
 
 
 
