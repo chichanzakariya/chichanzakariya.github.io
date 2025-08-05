@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شخصان يتحركان</title>
+    <title>تحية الأصدقاء</title>
     <style>
         body {
             display: flex;
@@ -11,10 +11,10 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #34495e; /* لون الخلفية */
+            background-color: #e74c3c; /* الخلفية الحمراء التي طلبتها */
         }
         canvas {
-            background-color: #ecf0f1; /* لون اللوحة */
+            background-color: #ecf0f1;
             border: 5px solid #fff;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
@@ -31,27 +31,27 @@
         canvas.width = 800;
         canvas.height = 500;
 
-        // تعريف الشخصية الأولى (بلون أحمر)
+        // تعريف الشخصية الأولى (على اليسار)
         const person1 = {
-            x: 100,  // الموضع الأفقي
-            y: 100,  // الموضع العمودي
-            size: 20, // حجم الرأس والجسم
-            dx: 3,  // السرعة الأفقية
-            dy: 2,  // السرعة العمودية
-            color: '#e74c3c' // لون الشخص
+            x: 100,
+            y: 300,
+            size: 20,
+            color: '#3498db', // لون أزرق
+            dx: 2, // السرعة الأفقية
+            dy: 0
         };
 
-        // تعريف الشخصية الثانية (بلون أزرق)
+        // تعريف الشخصية الثانية (على اليمين)
         const person2 = {
             x: 600,
-            y: 400,
-            size: 25,
-            dx: -2,
-            dy: -3,
-            color: '#3498db'
+            y: 300,
+            size: 20,
+            color: '#2ecc71', // لون أخضر
+            dx: -2, // السرعة الأفقية (يتجه نحو اليسار)
+            dy: 0
         };
 
-        // دالة لرسم شخصية بسيطة
+        // دالة لرسم شخصية بسيطة مع أيدي وأرجل
         function drawPerson(person) {
             // رسم الرأس (دائرة)
             ctx.beginPath();
@@ -63,48 +63,29 @@
             // رسم الجسم (مستطيل)
             ctx.fillStyle = person.color;
             ctx.fillRect(person.x - (person.size / 2), person.y + person.size, person.size, person.size * 2);
-        }
 
-        // دالة تحريك الكائن وتحديث موضعه
-        function movePerson(person) {
-            person.x += person.dx;
-            person.y += person.dy;
-
-            // كشف الاصطدام بالجدران الأفقية
-            if (person.x + person.size > canvas.width || person.x - person.size < 0) {
-                person.dx = -person.dx;
-            }
-            // كشف الاصطدام بالجدران العمودية
-            if (person.y + person.size * 3 > canvas.height || person.y - person.size < 0) {
-                person.dy = -person.dy;
-            }
-        }
-
-        // دالة التحديث الرئيسية
-        function update() {
-            // مسح الشاشة بالكامل في كل إطار
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // رسم الأيدي (خطوط)
+            ctx.strokeStyle = person.color;
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            // اليد اليمنى
+            ctx.moveTo(person.x + person.size / 2, person.y + person.size * 1.5);
+            ctx.lineTo(person.x + person.size / 2 + 30, person.y + person.size * 1.5);
+            // اليد اليسرى
+            ctx.moveTo(person.x - person.size / 2, person.y + person.size * 1.5);
+            ctx.lineTo(person.x - person.size / 2 - 30, person.y + person.size * 1.5);
+            ctx.stroke();
+            ctx.closePath();
             
-            // رسم الشخصين
-            drawPerson(person1);
-            drawPerson(person2);
+            // رسم الأرجل (خطوط)
+            ctx.beginPath();
+            // الرجل اليمنى
+            ctx.moveTo(person.x + person.size / 4, person.y + person.size * 3);
+            ctx.lineTo(person.x + person.size / 4, person.y + person.size * 4);
+            // الرجل اليسرى
+            ctx.moveTo(person.x - person.size / 4, person.y + person.size * 3);
+            ctx.lineTo(person.x - person.size / 4, person.y + person.size *
 
-            // تحريك الشخصين
-            movePerson(person1);
-            movePerson(person2);
-        }
-
-        // دالة الحلقة الرئيسية للرسوم المتحركة
-        function animate() {
-            update();
-            requestAnimationFrame(animate);
-        }
-
-        // بدء الرسوم المتحركة
-        animate();
-    </script>
-</body>
-</html>
 
 
 
