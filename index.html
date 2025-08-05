@@ -11,10 +11,10 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #2c3e50;
+            background-color: #34495e; /* لون الخلفية */
         }
         canvas {
-            background-color: #34495e;
+            background-color: #ecf0f1; /* لون اللوحة */
             border: 5px solid #fff;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
@@ -31,32 +31,38 @@
         canvas.width = 800;
         canvas.height = 500;
 
-        // تعريف الكائن الأول (الشخص الأول)
+        // تعريف الشخصية الأولى (بلون أحمر)
         const person1 = {
-            x: 50,  // الموضع الأفقي
-            y: 50,  // الموضع العمودي
-            width: 40, // عرض الشخص
-            height: 80, // طول الشخص
+            x: 100,  // الموضع الأفقي
+            y: 100,  // الموضع العمودي
+            size: 20, // حجم الرأس والجسم
             dx: 3,  // السرعة الأفقية
-            dy: 3,  // السرعة العمودية
+            dy: 2,  // السرعة العمودية
             color: '#e74c3c' // لون الشخص
         };
 
-        // تعريف الكائن الثاني (الشخص الثاني)
+        // تعريف الشخصية الثانية (بلون أزرق)
         const person2 = {
-            x: 700,
+            x: 600,
             y: 400,
-            width: 40,
-            height: 80,
-            dx: -4,
-            dy: -2,
+            size: 25,
+            dx: -2,
+            dy: -3,
             color: '#3498db'
         };
 
-        // دالة لرسم شخص
+        // دالة لرسم شخصية بسيطة
         function drawPerson(person) {
+            // رسم الرأس (دائرة)
+            ctx.beginPath();
+            ctx.arc(person.x, person.y, person.size, 0, Math.PI * 2);
             ctx.fillStyle = person.color;
-            ctx.fillRect(person.x, person.y, person.width, person.height);
+            ctx.fill();
+            ctx.closePath();
+
+            // رسم الجسم (مستطيل)
+            ctx.fillStyle = person.color;
+            ctx.fillRect(person.x - (person.size / 2), person.y + person.size, person.size, person.size * 2);
         }
 
         // دالة تحريك الكائن وتحديث موضعه
@@ -65,11 +71,11 @@
             person.y += person.dy;
 
             // كشف الاصطدام بالجدران الأفقية
-            if (person.x + person.width > canvas.width || person.x < 0) {
+            if (person.x + person.size > canvas.width || person.x - person.size < 0) {
                 person.dx = -person.dx;
             }
             // كشف الاصطدام بالجدران العمودية
-            if (person.y + person.height > canvas.height || person.y < 0) {
+            if (person.y + person.size * 3 > canvas.height || person.y - person.size < 0) {
                 person.dy = -person.dy;
             }
         }
@@ -99,6 +105,7 @@
     </script>
 </body>
 </html>
+
 
 
 
