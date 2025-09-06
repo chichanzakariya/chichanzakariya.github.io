@@ -1,234 +1,161 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محسن شيشان - صباغ محترف</title>
+    <title>محسن شيشان | صباغ محترف</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --primary-color: #3f51b5; /* لون أزرق جذاب */
-            --secondary-color: #212121; /* لون غامق للنصوص */
-            --background-color: #f5f5f5; /* خلفية رمادية فاتحة */
-            --card-background: #fff;
-            --text-color: #424242;
-            --accent-color: #ff9800; /* لون برتقالي للتأكيد */
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            direction: rtl;
-            text-align: right;
-            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
         }
         .container {
-            width: 90%;
-            max-width: 960px;
-            margin: auto;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #673ab7 100%);
-            color: var(--card-background);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.2em;
-            font-weight: 300;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2.2em;
-            color: var(--secondary-color);
-            margin-top: 50px;
-            margin-bottom: 20px;
+        .section-header {
             position: relative;
-            display: inline-block;
-            width: 100%;
+            text-align: center;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
         }
-        .section-title::after {
+        .section-header:after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent-color);
-            border-radius: 2px;
+            width: 80px;
+            height: 4px;
+            background-color: #f97316;
+            border-radius: 999px;
         }
-        .content-card {
-            background-color: var(--card-background);
-            padding: 30px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .profile-info {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            flex-wrap: wrap-reverse;
-        }
-        .profile-info img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--accent-color);
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .profile-text {
-            flex: 1;
-        }
-        .services-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            list-style: none;
-            gap: 15px;
-        }
-        .services-list li {
-            background-color: var(--background-color);
-            padding: 15px 25px;
-            border-radius: 5px;
-            font-weight: bold;
-            color: var(--primary-color);
-            border: 1px solid #ddd;
-        }
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .portfolio-item:hover {
-            transform: translateY(-5px);
-        }
-        .portfolio-item img {
+        .card-image {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
-            display: block;
-        }
-        .portfolio-caption {
-            padding: 15px;
-            background-color: var(--card-background);
-            text-align: center;
-            font-weight: bold;
-        }
-        .contact-info {
-            text-align: center;
-            font-size: 1.1em;
-        }
-        .contact-info a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            background: var(--secondary-color);
-            color: var(--background-color);
-            border-radius: 10px;
+            border-radius: 0.5rem;
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-100">
 
-    <header>
-        <div class="container">
-            <h1>محسن شيشان - صباغ محترف</h1>
-            <p>
-                أكثر من 20 عاماً من الخبرة في تحويل المنازل إلى لوحات فنية. نعمل بدقة واحترافية لا مثيل لها.
-            </p>
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center text-center md:text-right">
+            <h1 class="text-3xl font-bold text-gray-800">محسن شيشان</h1>
+            <nav class="mt-4 md:mt-0">
+                <a href="#about" class="mx-2 text-gray-600 hover:text-orange-500 transition-colors duration-300 font-semibold">من أنا</a>
+                <a href="#portfolio" class="mx-2 text-gray-600 hover:text-orange-500 transition-colors duration-300 font-semibold">أعمالي</a>
+                <a href="#contact" class="mx-2 text-gray-600 hover:text-orange-500 transition-colors duration-300 font-semibold">تواصل معي</a>
+            </nav>
         </div>
     </header>
 
-    <main class="container">
+    <!-- Hero Section -->
+    <section class="bg-orange-500 text-white py-20 px-4 text-center">
+        <div class="container mx-auto">
+            <h2 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4 animate-fade-in-down">
+                أعمال دهان احترافية لمنزلك
+            </h2>
+            <p class="text-lg md:text-xl font-medium mb-8">
+                نحول رؤيتك إلى واقع بأفضل جودة ودقة.
+            </p>
+            <a href="#contact" class="bg-white text-orange-500 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-all duration-300">
+                اطلب خدمة الآن
+            </a>
+        </div>
+    </section>
 
-        <section id="about">
-            <h2 class="section-title">من نحن</h2>
-            <div class="content-card">
-                <div class="profile-info">
-                    <img src="profile.jpg" alt="صورة الصباغ">
-                    <div class="profile-text">
-                        <p>أنا محسن، شغفي هو إضفاء الحياة على المساحات من خلال الألوان والدهانات. مع خبرة تمتد لأكثر من عقدين، قمت بتنفيذ مئات المشاريع بنجاح. ألتزم دائماً بأعلى معايير الجودة والدقة في كل التفاصيل.</p>
+    <!-- About Me Section -->
+    <section id="about" class="py-20 px-4">
+        <div class="container mx-auto text-center md:text-right">
+            <div class="section-header">
+                <h3 class="text-4xl font-bold text-gray-800 mb-2">من أنا</h3>
+                <p class="text-gray-500">خبرة أكثر من 20 عاماً في مجال الدهان</p>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-8 transform transition-transform duration-500 hover:scale-105">
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    أنا محسن شيشان، صباغ محترف متخصص في جميع أنواع الدهانات الداخلية والخارجية.
+                    أقدم خدماتي للمنازل، المكاتب، والمحلات التجارية.
+                    هدفي هو تقديم عمل فني متقن يرضي العميل ويضيف لمسة جمالية تدوم طويلاً.
+                    أعمل بدقة عالية وألتزم بالمواعيد المحددة، مع استخدام أفضل أنواع الدهانات وأحدث التقنيات.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 px-4 bg-gray-50">
+        <div class="container mx-auto text-center md:text-right">
+            <div class="section-header">
+                <h3 class="text-4xl font-bold text-gray-800 mb-2">أعمالي</h3>
+                <p class="text-gray-500">جولة في بعض المشاريع التي قمت بها</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/600x400/FFA500/FFFFFF?text=قبل" onerror="this.src='https://placehold.co/600x400/f3f4f6/374151?text=صورة+غير+متوفرة';" alt="صورة عمل قبل الدهان" class="card-image">
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">دهان شقة سكنية - تصميم عصري</h4>
+                        <p class="text-gray-600">استخدام ألوان فاتحة لإعطاء شعور بالاتساع والنظافة.</p>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/600x400/FFA500/FFFFFF?text=بعد" onerror="this.src='https://placehold.co/600x400/f3f4f6/374151?text=صورة+غير+متوفرة';" alt="صورة عمل بعد الدهان" class="card-image">
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">تجديد مكتب تجاري</h4>
+                        <p class="text-gray-600">دهانات سريعة الجفاف ومناسبة للبيئة التجارية.</p>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                    <img src="https://placehold.co/600x400/FFA500/FFFFFF?text=تفاصيل" onerror="this.src='https://placehold.co/600x400/f3f4f6/374151?text=صورة+غير+متوفرة';" alt="صورة عمل بعد الدهان" class="card-image">
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">أعمال دهان خارجية - فيلا</h4>
+                        <p class="text-gray-600">دهانات مقاومة للعوامل الجوية وتدوم طويلاً.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="services">
-            <h2 class="section-title">خدماتنا</h2>
-            <div class="content-card">
-                <ul class="services-list">
-                    <li>صباغة المنازل الداخلية</li>
-                    <li>ديكورات الجدران الحديثة</li>
-                    <li>دهان الأبواب والنوافذ</li>
-                </ul>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4">
+        <div class="container mx-auto text-center md:text-right">
+            <div class="section-header">
+                <h3 class="text-4xl font-bold text-gray-800 mb-2">تواصل معي</h3>
+                <p class="text-gray-500">يسعدني الرد على استفساراتك وتقديم عرض سعر مجاني</p>
             </div>
-        </section>
-
-        <section id="portfolio">
-            <h2 class="section-title">معرض أعمالنا</h2>
-            <div class="content-card">
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="project1.jpg" alt="صورة عمل 1">
-                        <div class="portfolio-caption">صباغة شقة كاملة بألوان عصرية</div>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8 md:space-x-reverse">
+                    <div class="flex items-center space-x-2 space-x-reverse text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <a href="tel:0661667489" class="text-lg font-medium hover:underline">0661667489</a>
                     </div>
-                    <div class="portfolio-item">
-                        <img src="project2.jpg" alt="صورة عمل 2">
-                        <div class="portfolio-caption">ديكور خاص لغرفة نوم</div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="project3.jpg" alt="صورة عمل 3">
-                        <div class="portfolio-caption">تجديد دهان غرفة معيشة</div>
+                    <div class="flex items-center space-x-2 space-x-reverse text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <a href="mailto:contact@muhsinshishan.com" class="text-lg font-medium hover:underline">contact@muhsinshishan.com</a>
                     </div>
                 </div>
+                <p class="mt-8 text-gray-600">
+                    <span class="font-bold">الموقع:</span> وادي زم، المغرب
+                </p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact">
-            <h2 class="section-title">تواصل معنا</h2>
-            <div class="content-card">
-                <div class="contact-info">
-                    <p>لطلب خدمة أو للحصول على استشارة مجانية، تواصلوا معنا عبر:</p>
-                    <p>واتساب: <a href="https://wa.me/0661667489" target="_blank">0661667489</a></p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 محسن شيشان. جميع الحقوق محفوظة.</p>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12 text-center">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2024 محسن شيشان | جميع الحقوق محفوظة</p>
         </div>
     </footer>
 
